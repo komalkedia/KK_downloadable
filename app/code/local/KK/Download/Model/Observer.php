@@ -76,14 +76,13 @@ class KK_Download_Model_Observer
 			{
 				
 				$currentUrl =  Mage::helper('core/url')->getCurrentUrl().'qty/'.$products['qty'];
-				//foreach($products['links'] as $lk=>$link)
-				//$currentUrl.='/links['.$lk.']/'.$link;//Mage::app()->getRequest()->getServer('HTTP_REFERER');
-				//die();
+				
 				$_session = Mage::getSingleton('customer/session');    
 				$_session->setBeforeAuthUrl($currentUrl);
+				
 				$response = Mage::app()->getFrontController()->getResponse();
 				$url = Mage::getBaseUrl().'customer/account/login';
-				$response->setRedirect($url);//->setParam('return_url',"$customerRedirectUrl");
+				$response->setRedirect($url);				
 				Mage::app()->getResponse()->sendResponse();
 				exit;
 			}
