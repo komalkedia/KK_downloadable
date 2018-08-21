@@ -1,4 +1,4 @@
-# KK_downloadable
+# KK_Download
 Magento 1.9 plugin - Skip cart and checkout for free downloadable products
 
 # Plugin description:
