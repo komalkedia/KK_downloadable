@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <KK_Download>
+      <version>0.1.0</version>
+    </KK_Download>
+  </modules>
+  <frontend>
+    <routers>
+      <download>
+        <use>standard</use>
+          <args>
+            <module>KK_Download</module>
+            <frontName>download</frontName>
+          </args>
+      </download>
+	  <customer>
+		<args>
+			<modules>
+				<KK_Download before="Mage_Customer">KK_Download</KK_Download>
+			</modules>
+		</args>
+	  </customer>
+    </routers>
+		<layout>
+		  <updates>
+			<download>
+			  <file>download.xml</file>
+			</download>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <download>
+        <class>KK_Download_Helper</class>
+      </download>
+    </helpers>
+	<blocks>
+	  <download>
+		<class>KK_Download_Block</class>
+	  </download>
+	</blocks>
+	<models>
+	  <download>
+		<class>KK_Download_Model</class>
+		<resourceModel>download_mysql4</resourceModel>
+	  </download>
+	</models>
+    <events>
+	  <checkout_cart_product_add_after> <!-- identifier of the event we want to catch -->
+        <observers>
+          <checkout_cart_product_add_after_handler> <!-- identifier of the event handler -->
+            <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>download/observer</class> <!-- observers class alias -->
+            <method>runDownloadable</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </checkout_cart_product_add_after_handler>
+        </observers>
+      </checkout_cart_product_add_after>
+    </events>
+  </global>
+</config> 
